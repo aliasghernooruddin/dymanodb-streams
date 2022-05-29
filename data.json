@@ -1,0 +1,235 @@
+{
+    "Records": [
+        {
+            "eventID": "792b450c94e343d7ca8ce0ab0d21ea46",
+            "eventName": "INSERT",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-1",
+            "dynamodb": {
+                "ApproximateCreationDateTime": 1652636662,
+                "Keys": {
+                    "CertsId": {
+                        "S": "Cert-11555198128423300"
+                    }
+                },
+                "NewImage": {
+                    "AuthInfo": {
+                        "M": {
+                            "BearerAuthToken": {
+                                "S": "Bearer eyJ0eXAiOiJKV1Qi"
+                            },
+                            "clienthostname": {
+                                "S": "https://example.local.api.endpoint"
+                            }
+                        }
+                    },
+                    "CertStatus": {
+                        "S": "pending"
+                    },
+                    "eventCertTemplateURL": {
+                        "S": "http://s3.amazonaws.com/exampleFileTemplate.pptx"
+                    },
+                    "CertsId": {
+                        "S": "Cert-11555198128423300"
+                    },
+                    "ArrData": {
+                        "L": [
+                            {
+                                "M": {
+                                    "certsdata": {
+                                        "M": {
+                                            "UserName": {
+                                                "S": "سناء 22 المحاسنة"
+                                            },
+                                            "WebinarName": {
+                                                "S": "Webinar 22 Name"
+                                            },
+                                            "Duration": {
+                                                "S": "1234"
+                                            },
+                                            "Date": {
+                                                "S": "12/11/2022"
+                                            }
+                                        }
+                                    },
+                                    "generalinfo": {
+                                        "M": {
+                                            "user_id": {
+                                                "N": "2"
+                                            },
+                                            "service_id": {
+                                                "N": "2"
+                                            },
+                                            "platform": {
+                                                "S": "example.URL.com"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "SequenceNumber": "38765200000000064656505226",
+                "SizeBytes": 1413,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "eventSourceARN": "arn:aws:dynamodb:us-east-1:675268097505:table/CertsDynamodbTable/stream/2022-05-07T14:19:32.840"
+        },
+        {
+            "eventID": "792b450c94e343d7ca8ce0ab0d21ea46",
+            "eventName": "INSERT",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-1",
+            "dynamodb": {
+                "ApproximateCreationDateTime": 1652636662,
+                "Keys": {
+                    "CertsId": {
+                        "S": "Cert-11555198128423300"
+                    }
+                },
+                "NewImage": {
+                    "AuthInfo": {
+                        "M": {
+                            "BearerAuthToken": {
+                                "S": "Bearer eyJ0eXAiOiJKV1Qi"
+                            },
+                            "clienthostname": {
+                                "S": "https://example.local.api.endpoint"
+                            }
+                        }
+                    },
+                    "CertStatus": {
+                        "S": "pending"
+                    },
+                    "eventCertTemplateURL": {
+                        "S": "http://s3.amazonaws.com/exampleFileTemplate.pptx"
+                    },
+                    "CertsId": {
+                        "S": "Cert-11555198128423300"
+                    },
+                    "ArrData": {
+                        "L": [
+                            {
+                                "M": {
+                                    "certsdata": {
+                                        "M": {
+                                            "UserName": {
+                                                "S": "سناء 22 المحاسنة"
+                                            },
+                                            "WebinarName": {
+                                                "S": "Webinar 22 Name"
+                                            },
+                                            "Duration": {
+                                                "S": "1234"
+                                            },
+                                            "Date": {
+                                                "S": "12/11/2022"
+                                            }
+                                        }
+                                    },
+                                    "generalinfo": {
+                                        "M": {
+                                            "user_id": {
+                                                "N": "2"
+                                            },
+                                            "service_id": {
+                                                "N": "2"
+                                            },
+                                            "platform": {
+                                                "S": "example.URL.com"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "SequenceNumber": "38765200000000064656505226",
+                "SizeBytes": 1413,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "eventSourceARN": "arn:aws:dynamodb:us-east-1:675268097505:table/CertsDynamodbTable/stream/2022-05-07T14:19:32.840"
+        },
+        {
+            "eventID": "792b450c94e343d7ca8ce0ab0d21ea46",
+            "eventName": "INSERT",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-1",
+            "dynamodb": {
+                "ApproximateCreationDateTime": 1652636662,
+                "Keys": {
+                    "CertsId": {
+                        "S": "Cert-11555198128423300"
+                    }
+                },
+                "NewImage": {
+                    "AuthInfo": {
+                        "M": {
+                            "BearerAuthToken": {
+                                "S": "Bearer eyJ0eXAiOiJKV1Qi"
+                            },
+                            "clienthostname": {
+                                "S": "https://example.local.api.endpoint"
+                            }
+                        }
+                    },
+                    "CertStatus": {
+                        "S": "pending"
+                    },
+                    "eventCertTemplateURL": {
+                        "S": "http://s3.amazonaws.com/exampleFileTemplate.pptx"
+                    },
+                    "CertsId": {
+                        "S": "Cert-11555198128423300"
+                    },
+                    "ArrData": {
+                        "L": [
+                            {
+                                "M": {
+                                    "certsdata": {
+                                        "M": {
+                                            "UserName": {
+                                                "S": "سناء 22 المحاسنة"
+                                            },
+                                            "WebinarName": {
+                                                "S": "Webinar 22 Name"
+                                            },
+                                            "Duration": {
+                                                "S": "1234"
+                                            },
+                                            "Date": {
+                                                "S": "12/11/2022"
+                                            }
+                                        }
+                                    },
+                                    "generalinfo": {
+                                        "M": {
+                                            "user_id": {
+                                                "N": "2"
+                                            },
+                                            "service_id": {
+                                                "N": "2"
+                                            },
+                                            "platform": {
+                                                "S": "example.URL.com"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "SequenceNumber": "38765200000000064656505226",
+                "SizeBytes": 1413,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "eventSourceARN": "arn:aws:dynamodb:us-east-1:675268097505:table/CertsDynamodbTable/stream/2022-05-07T14:19:32.840"
+        }
+    ]
+}

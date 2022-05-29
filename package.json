@@ -1,0 +1,33 @@
+{
+  "name": "dymanodb-streams",
+  "version": "1.0.0",
+  "description": "A DynamoDB Stream invokes a Lambda function, which using streams data generates a PDF file and saves to S3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliasghernooruddin/dymanodb-streams.git"
+  },
+  "keywords": [
+    "AWS",
+    "Lambda",
+    "DynamoDB",
+    "S3",
+    "Streams"
+  ],
+  "author": "Aliasgher Nooruddin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aliasghernooruddin/dymanodb-streams/issues"
+  },
+  "homepage": "https://github.com/aliasghernooruddin/dymanodb-streams#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1145.0",
+    "axios": "^0.27.2",
+    "docxtemplater": "^3.29.5",
+    "dotenv": "^16.0.1",
+    "pizzip": "^3.1.1"
+  }
+}
