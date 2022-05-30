@@ -26,6 +26,7 @@
   "dependencies": {
     "aws-sdk": "^2.1145.0",
     "axios": "^0.27.2",
+    "cloudconvert": "^2.3.0",
     "docxtemplater": "^3.29.5",
     "dotenv": "^16.0.1",
     "pizzip": "^3.1.1"
