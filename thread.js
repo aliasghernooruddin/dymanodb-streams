@@ -1,16 +1,25 @@
 const { Worker } = require('worker_threads');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const originalArray = Array(50000).fill('my name is Khan');
+// console.log(process.env.AWS_ACCESS_KEY)
 
-// Create a worker thread and pass to it the originalArray
-const worker = new Worker('./worker.js', {
-    workerData: originalArray
-});
+exports.handler = async (event, context) => {
+    // Create a worker thread and pass to it the originalArray
+    const worker = new Worker('./worker.js', {
+        workerData: event.Records
+    });
 
-// Receive messages from the worker thread
-worker.once('message', (hashedArray) => {
-    console.log( hashedArray);
+    // Receive messages from the worker thread
+    worker.once('message', (hashedArray) => {
+        console.log(hashedArray);
 
-    // Do anything with the received hashedArray
+        // Do anything with the received hashedArray
 
-});
+    });
+};
+
+
+
+
+

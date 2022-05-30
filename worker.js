@@ -6,9 +6,9 @@ const hashedArray = [];
 // Perform the CPU-intensive task here
 for (const element of array) {
   const hash = crypto.createHmac('sha256', 'secret')
-    .update(element)
+    .update(element.eventID)
     .digest('hex');
-  
+
   hashedArray.push(hash);
 }
 // Send the hashedArray to the parent thread
