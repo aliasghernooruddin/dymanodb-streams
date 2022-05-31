@@ -1,8 +1,10 @@
 // worker.js
 const { parentPort, workerData } = require('worker_threads');
 const crypto = require('crypto');
+
 const array = workerData;
 const hashedArray = [];
+
 // Perform the CPU-intensive task here
 for (const element of array) {
   const hash = crypto.createHmac('sha256', 'secret')

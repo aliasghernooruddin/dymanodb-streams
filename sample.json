@@ -1,0 +1,81 @@
+{
+    "Records": [
+        {
+            "eventID": "792b450c94e343d7ca8ce0ab0d21ea46",
+            "eventName": "INSERT",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-1",
+            "dynamodb": {
+                "ApproximateCreationDateTime": 1652636662,
+                "Keys": {
+                    "CertsId": {
+                        "S": "Cert-11555198128423300"
+                    }
+                },
+                "NewImage": {
+                    "AuthInfo": {
+                        "M": {
+                            "BearerAuthToken": {
+                                "S": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZTgxNzA2NjFlMjI4OWE3MGI3YzVkNzlkMmRhMWRjOGQ0Mjg1MGRkNDQ4ZTcxYmZmZDU0ZjExMjEzNWFlNTNkZjE4NTk0NDk1YTUzOWRjNTUiLCJpYXQiOiIxNjUyNjM2NjU4Ljk2NjU4MyIsIm5iZiI6IjE2NTI2MzY2NTguOTY2NTg2IiwiZXhwIjoiMTY1NTMxNTA1OC43OTI1MjkiLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.WQi8MPHs3AxusyNmYIXnLdaO-93FqtpnjjzlcWq9esB44cxocAu5i3I6mIdFv-YyswQiPN2mC_VgTeYwj8Aq69tpvGnkAvkpuSZCw2VEdwIeX5BIwufOZ69G59j0YLt9VgX3liZlg7qTaMGht8jSzBaoY9IUVz7lbtTs9XKnJy3Noo9mFAAPyDLGnGMOdRPo9axYgngExkjsDE_hGNu14zX8rcwzsuSbpOBdpuxfCK_0cERa0I4coLiuNNiVu7K_WZdaFmET7zicPD-YhutfHO0hM3TPxUhRQKx0h40vmKDJBpbNwx_JT249B4bRMRGcOlv_pw2ZjKrCLjKD6h74aQVn_-f4X7jY7_JinBOchsVQp9HERh9PSGd6dqAsYtDgIDZI4ckYUdpvNneOk9Y_3zvs1RZsFgYLp5PYGh-E2rBsJcMcYQ5Kc1HhrquvML3mW6mhV0LFoNjSwlPMa6yJIb-eh1uQo3dLpTFTeOLhk45-s0hfcSqlU16dkMpueykppir11PeAah32OVswW-J_HGLMZwTKGcX_FFeAlu3F4PrHFs2bEO_GkuullfolkQrszeY_NNFI6i12J6JAJEH6-LAmvRZrh9nI1hmc0TqwiNOe1viRL2FnIy8psT2p606jPQRn_KJuTBaOqYhEzL4p6is1fLB9RbLy2GG-_M3avrI"
+                            },
+                            "clienthostname": {
+                                "S": "https://devwebinar6.api-dev.academi.sa"
+                            }
+                        }
+                    },
+                    "CertStatus": {
+                        "S": "pending"
+                    },
+                    "eventCertTemplateURL": {
+                        "S": "http://s3.amazonaws.com/academi-dev-assets/cerTemp.pptx"
+                    },
+                    "CertsId": {
+                        "S": "Cert-11555198128423300"
+                    },
+                    "ArrData": {
+                        "L": [
+                            {
+                                "M": {
+                                    "certsdata": {
+                                        "M": {
+                                            "UserName": {
+                                                "S": "سناء 22 المحاسنة"
+                                            },
+                                            "WebinarName": {
+                                                "S": "Webinar 22 Name"
+                                            },
+                                            "Duration": {
+                                                "S": "1234"
+                                            },
+                                            "Date": {
+                                                "S": "12/11/2022"
+                                            }
+                                        }
+                                    },
+                                    "generalinfo": {
+                                        "M": {
+                                            "user_id": {
+                                                "N": "2"
+                                            },
+                                            "service_id": {
+                                                "N": "2"
+                                            },
+                                            "platform": {
+                                                "S": "devwebinar6.academi.sa"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "SequenceNumber": "38765200000000064656505226",
+                "SizeBytes": 1413,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "eventSourceARN": "arn:aws:dynamodb:us-east-1:675268097505:table/CertsDynamodbTable/stream/2022-05-07T14:19:32.840"
+        }
+    ]
+}

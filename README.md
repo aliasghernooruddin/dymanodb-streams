@@ -46,19 +46,19 @@ node index.js
 
 A dynamodb streams will trigger this function, the stream will have single recored or multiple recoreds, and based on that the function will preforme it's actions
 
- 1- Recive dynamoDB event
- 2- If the event has multiple recorded run each one of them simultaneously starting from point 4.
- 3- Else go to 4.
- 4- Check if (eventName == "INSERT" && CertStatus == "pending") go to 6.
- 5- Else if (eventName == "MODIFY" &&  CertStatus == "generated") go to 13.
- 6- get data to generate new file.
- 7- download the Template file
- 8- start replacing data from step 6 to a new file using template in step 7
- 9- save output of step 8 to {/tmp}.
- 10 -start converting the file from step 9 to pdf format.
- 11- upload the output file from step 10 to AWS S3.
- 12- Insert Info To DynmoDB with CertStatus == "generated".
- 13- Send API request and save info to local DB.
+1- Recive dynamoDB event
+2- If the event has multiple recorded run each one of them simultaneously starting from point 4.
+3- Else go to 4.
+4- Check if (eventName == "INSERT" && CertStatus == "pending") go to 6.
+5- Else if (eventName == "MODIFY" &&  CertStatus == "generated") go to 13.
+6- get data to generate new file.
+7- download the Template file
+8- start replacing data from step 6 to a new file using template in step 7
+9- save output of step 8 to {/tmp}.
+10 -start converting the file from step 9 to pdf format.
+11- upload the output file from step 10 to AWS S3.
+12- Insert Info To DynmoDB with CertStatus == "generated".
+13- Send API request and save info to local DB.
  
 
 ## Expected [responses] & [requests] to be used in this function:
