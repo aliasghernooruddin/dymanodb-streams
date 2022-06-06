@@ -97,3 +97,11 @@ this code is using axios
     await axios.post(`${AuthInfo.clienthostname}/api/v0.9.2/MC-1848/add-certificates`, json_requests, { headers: headers})
 ```
 
+
+#### Commands to run the Application:
+
+### Without worker threads
+``` lambda-local -l index.js -h handler -e event.json -t 900```
+
+### With worker threads
+``` lambda-local -l thread.js -h handler -e event.json -t 900```

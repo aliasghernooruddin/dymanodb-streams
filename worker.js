@@ -1,18 +1,45 @@
 // worker.js
 const { parentPort, workerData } = require('worker_threads');
-const crypto = require('crypto');
+const utils = require("./utils.js")
 
-const array = workerData;
 const hashedArray = [];
+let length = workerData.length < 10 ? workerData.length : 10
+let records = workerData.slice(0, length)
 
-// Perform the CPU-intensive task here
-for (const element of array) {
-  const hash = crypto.createHmac('sha256', 'secret')
-    .update(element.eventID)
-    .digest('hex');
+for (const element of records) {
 
-  hashedArray.push(hash);
+	var marshalled = AWS.DynamoDB.Converter.unmarshall(element.dynamodb.NewImage);
+
+	if (element.eventName == 'INSERT' && marshalled.CertStatus == "pending") {
+		await utils.downloadTemplate(marshalled.eventCertTemplateURL)
+		await utils.modifyTemplate('cerTemp.pptx', marshalled.ArrData[0]['certsdata'])
+		let url = await utils.cloudConvertToPDF('output.pptx')
+		await utils.uploadToS3(url, marshalled.ArrData[0]['generalinfo'], marshalled.ArrData[0]['certsdata'].UserName)
+		let obj = {
+			user_id: marshalled.ArrData[0]['generalinfo'].user_id,
+			BearerAuthToken: marshalled.AuthInfo.BearerAuthToken,
+			clienthostname: marshalled.AuthInfo.clienthostname,
+			service_id: marshalled.ArrData[0]['generalinfo'].service_id,
+			PDFCertURL: url
+		}
+		await utils.addCertificateToDB(marshalled.CertsId, obj)
+
+	}
+	else if (element.eventName == 'MODIFY' && element.CertStatus == "generated") {
+		let obj = {
+			user_id: marshalled.ArrData[0]['generalinfo'].user_id,
+			service_id: marshalled.ArrData[0]['generalinfo'].service_id,
+			pdf: marshalled.ArrData[0]['generalinfo'].PDFCertURL
+		}
+		obj = JSON.stringify([obj])
+		await utils.saveToLocalDB(obj, obj.clienthostname, obj.BearerAuthToken)
+	} else {
+		console.log("No futher steps required")
+	}
+
+	hashedArray.push('Task Successfully completed');
 }
+
 // Send the hashedArray to the parent thread
 parentPort.postMessage(hashedArray);
 process.exit()

@@ -8,6 +8,7 @@ const CloudConvert = require('cloudconvert');
 const dotenv = require('dotenv');
 const AWS = require('aws-sdk'); // not needed on lambda 
 const axios = require('axios').default;
+const TABLE_NAME = 'CertsDynamodbTable';
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ const AWS_REGION = process.env.AWS_REGION
 const S3_BUCKET = process.env.S3_BUCKET
 
 const cloudConvert = new CloudConvert(CLOUD_CONVERT_API_KEY);
+
+const ddb = new AWS.DynamoDB.DocumentClient({ region: "us-east-1" });
 
 //------ s3 config (not needed on labmda )
 const s3 = new AWS.S3({ apiVersion: '2006-03-01', region: AWS_REGION });
@@ -164,15 +167,16 @@ const cloudConvertGetURL = function cloudConvertGetURL(JobID) {
     });
 }
 
-const uploadToS3 = function uploadToS3(url, generalInfo, username) {
+const uploadToS3 = async function uploadToS3(url, generalInfo, username) {
 
     let type = 'application/pdf';
 
-    return axios.get(url, {
-        responseType: 'arraybuffer'
-    }).then(response => {
+    try {
+        const response = await axios.get(url, {
+            responseType: 'arraybuffer'
+        });
         let buffer = Buffer.from(response.data, 'base64');
-        return (async () => {
+        return await (async () => {
             var params = {
                 Key: `certs-${generalInfo.platform}/${generalInfo.service_id}/${generalInfo.user_id}-${username}.pdf`,
                 Body: buffer,
@@ -182,18 +186,53 @@ const uploadToS3 = function uploadToS3(url, generalInfo, username) {
             };
 
             //notice use of the upload function, not the putObject function
-            return s3.upload(params).promise().then((response) => {
-                return response.Location;
+            return s3.upload(params).promise().then((response_1) => {
+                return response_1.Location;
             }, (err) => {
                 return { type: 'error', err: err };
             });
         })();
-    }).catch(err => {
-        console.log(err)
-        return { type: 'error', err: err };
+    } catch (err_1) {
+        console.log(err_1);
+        return { type: 'error', err: err_1 };
+    }
+}
+
+const addCertificateToDB = function AddCertsInfoToCertDynmoDB(CertsId, CertInfo) {
+    var params = {
+        TableName: TABLE_NAME,
+        Key: {
+            "CertsId": CertsId
+        },
+        UpdateExpression: "SET CertStatus = :CertStatus, GeneratedCertInfo = :GeneratedCertInfo",
+        ExpressionAttributeValues:
+        {
+            ":GeneratedCertInfo": CertInfo,
+            ":CertStatus": "generated"
+        },
+        ReturnValues: "UPDATED_NEW"
+    };
+    return ddb.update(params).promise();
+}
+
+const saveToLocalDB = async function saveToDB(json_requests, DBClientHost, DBBearerAuthToken) {
+    return new Promise(async function (resolve, reject) {
+        let headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": DBBearerAuthToken
+        };
+        await axios.post(`${DBClientHost}/api/v0.9.2/MC-1848/add-certificates`, json_requests, { headers: headers })
+            .then((response) => {
+                resolve("Save to Database status::", response);
+            })
+            .catch(err => {
+                reject({ type: 'error', err: err });
+            });
+
     });
 }
 
 module.exports = {
-    downloadTemplate, modifyTemplate, cloudConvertToPDF, uploadToS3
+    downloadTemplate, modifyTemplate, cloudConvertToPDF, uploadToS3, addCertificateToDB, saveToLocalDB
 }
