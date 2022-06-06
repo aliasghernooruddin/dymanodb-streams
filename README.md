@@ -100,6 +100,9 @@ this code is using axios
 
 #### Commands to run the Application:
 
+### Install lambda-local library from npm
+```npm i lambda-local```
+
 ### Without worker threads
 ``` lambda-local -l index.js -h handler -e event.json -t 900```
 
