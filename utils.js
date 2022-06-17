@@ -111,12 +111,11 @@ const cloudConvertToPDF = function cloudConvertToPDF(File) {
             await cloudConvert.tasks.upload(uploadTask, inputFile, File);
             return Job;
         }).then(async function (JobAfterUpload) {
-            console.log("JobAfterUpload.id >>> ", JobAfterUpload.id);
+            console.log("Converted to PDF");
             let PDFURL = await cloudConvertGetURL(JobAfterUpload.id);
             resolve(PDFURL);
-        }).catch(function (e) {
-            console.error("Error2::", e.toString());
-            reject(e.toString());
+        }).catch(function (err) {
+            reject({ type: 'error', obj: "Error on cloudConvertToPDF Function", err: err });
         });
     })
 
@@ -160,9 +159,8 @@ const cloudConvertGetURL = function cloudConvertGetURL(JobID) {
                 });
                 req.end();
             }, 500); // the interval when to call the function again 500ms = 0.5sek 
-        } catch (e) {
-            console.log(e.toString());
-            reject(e.toString());
+        } catch (err) {
+            reject( { type: 'error', obj: "Error on cloudConvertGetURL Function", err: err });
         }
     });
 }
@@ -187,14 +185,14 @@ const uploadToS3 = async function uploadToS3(url, generalInfo, username) {
 
             //notice use of the upload function, not the putObject function
             return s3.upload(params).promise().then((response_1) => {
+                console.log("File Uploaded Successfully")
                 return response_1.Location;
             }, (err) => {
                 return { type: 'error', err: err };
             });
         })();
-    } catch (err_1) {
-        console.log(err_1);
-        return { type: 'error', err: err_1 };
+    } catch (err) {
+        return { type: 'error', obj: "Error on uploadToS3 Function", err: err };
     }
 }
 
