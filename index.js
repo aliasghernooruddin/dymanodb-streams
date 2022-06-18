@@ -26,8 +26,7 @@ exports.handler = async (event, context) => {
                 }
 
                 await utils.addCertificateToDB(marshalled.CertsId, obj)
-            }
-            else if (element.eventName == 'MODIFY' && element.CertStatus == "generated") {
+            } else if (element.eventName == 'MODIFY' && element.CertStatus == "generated") {
 
                 let obj = {
                     user_id: arrData['generalinfo'].user_id,
@@ -37,7 +36,7 @@ exports.handler = async (event, context) => {
 
                 obj = JSON.stringify([obj])
 
-                await utils.saveToLocalDB(obj, obj.clienthostname, obj.BearerAuthToken)
+                await utils.saveToLocalDB(obj, obj.clienthostname, marshalled.AuthInfo.BearerAuthToken)
             } else {
                 console.log("No futher steps required")
             }
