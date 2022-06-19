@@ -225,7 +225,7 @@ const saveToLocalDB = async function saveToDB(json_requests, DBClientHost, DBBea
                 resolve("Save to Database status::", response);
             })
             .catch(err => {
-                reject({ type: 'error', err: err });
+                reject({ type: 'error', err: err.toString() });
             });
 
     });

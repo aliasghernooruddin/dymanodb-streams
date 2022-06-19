@@ -27,7 +27,7 @@ exports.handler = async (event, context) => {
                 }
 
                 await utils.addCertificateToDB(marshalled.CertsId, obj)
-            } else if (element.eventName == 'MODIFY' && element.CertStatus == "generated") {
+            } else if (element.eventName == 'MODIFY' && marshalled.CertStatus == "generated") {
 
                 let obj = {
                     user_id: arrData['generalinfo'].user_id,

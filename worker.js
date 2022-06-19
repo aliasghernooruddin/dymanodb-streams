@@ -28,8 +28,8 @@ for (const element of records) {
 			}
 
 			await utils.addCertificateToDB(marshalled.CertsId, obj)
-		} else if (element.eventName == 'MODIFY' && element.CertStatus == "generated") {
-
+		} else if (element.eventName == 'MODIFY' && marshalled.CertStatus == "generated") {
+		
 			let obj = {
 				user_id: arrData['generalinfo'].user_id,
 				service_id: arrData['generalinfo'].service_id,
