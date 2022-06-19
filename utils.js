@@ -59,7 +59,7 @@ const modifyTemplate = function modifyTemplate(filename, data) {
             linebreaks: true,
         });
 
-        let obj = {}
+        let obj = {first:'this is a g'}
         for (let i in data) {
             obj[i] = data[i]
         }
