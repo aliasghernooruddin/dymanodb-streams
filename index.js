@@ -10,6 +10,7 @@ exports.handler = async (event, context) => {
         try {
             var marshalled = AWS.DynamoDB.Converter.unmarshall(element.dynamodb.NewImage);
             var arrData = marshalled.ArrData[0]
+            var authInfo = marshalled.AuthInfo
 
             if (element.eventName == 'INSERT' && marshalled.CertStatus == "pending") {
                 await utils.downloadTemplate(marshalled.eventCertTemplateURL)
@@ -19,8 +20,8 @@ exports.handler = async (event, context) => {
 
                 let obj = {
                     user_id: arrData['generalinfo'].user_id,
-                    BearerAuthToken: marshalled.AuthInfo.BearerAuthToken,
-                    clienthostname: marshalled.AuthInfo.clienthostname,
+                    BearerAuthToken: authInfo.BearerAuthToken,
+                    clienthostname: authInfo.clienthostname,
                     service_id: arrData['generalinfo'].service_id,
                     PDFCertURL: url
                 }
@@ -36,7 +37,7 @@ exports.handler = async (event, context) => {
 
                 obj = JSON.stringify([obj])
 
-                await utils.saveToLocalDB(obj, obj.clienthostname, marshalled.AuthInfo.BearerAuthToken)
+                await utils.saveToLocalDB(obj, authInfo.clienthostname, authInfo.BearerAuthToken)
             } else {
                 console.log("No futher steps required")
             }

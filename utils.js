@@ -160,7 +160,7 @@ const cloudConvertGetURL = function cloudConvertGetURL(JobID) {
                 req.end();
             }, 500); // the interval when to call the function again 500ms = 0.5sek 
         } catch (err) {
-            reject( { type: 'error', obj: "Error on cloudConvertGetURL Function", err: err });
+            reject({ type: 'error', obj: "Error on cloudConvertGetURL Function", err: err });
         }
     });
 }
