@@ -59,12 +59,12 @@ const modifyTemplate = function modifyTemplate(filename, data) {
             linebreaks: true,
         });
 
-        doc.render({
-            UserName: data.UserName,
-            WebinarName: data.WebinarName,
-            Duration: data.Duration,
-            Date: data.Date,
-        });
+        let obj = {}
+        for (let i in data) {
+            obj[i] = data[i]
+        }
+
+        doc.render(obj);
 
         const buf = doc.getZip().generate({
             type: "nodebuffer",
